@@ -8,16 +8,18 @@ public class Application
     [Key]
     public Guid Id { get; set; }
 
-    public string? FirstName { get; set; }
+    [Required]
+    public string Name { get; set; }
 
-    public string? LastName { get; set; }
-
+    [Required]
     [EmailAddress]
-    public string? Email { get; set; }
+    public string Email { get; set; }
 
-    public Address? Address { get; set; }
+    [Required]
+    public Address Address { get; set; }
 
-    public string? VehicleRegistrationNumber { get; set; }
+    [Required]
+    public string VehicleRegistrationNumber { get; set; }
 
     [JsonIgnore]
     public DateTime? Timestamp { get; set; }
