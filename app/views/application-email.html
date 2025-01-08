@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <form class="form" action="/check-answers" method="post">
+    {% from "govuk/components/input/macro.njk" import govukInput %}
+
+    {{ govukInput({
+      label: {
+        text: "Enter your Email address",
+        classes: "govuk-label--l",
+        isPageHeading: true
+      },
+      id: "application-email",
+      name: "application-email",
+      value: data['application-email']
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+  </form>
+
+{% endblock %}

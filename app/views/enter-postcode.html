@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<form class="form" action="/select-address" method="post">
+  <div class="govuk-width-container">
+    {% from "govuk/components/input/macro.njk" import govukInput %}
+    {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+    {% call govukFieldset({
+      legend: {
+        text: "What is your postcode?",
+        classes: "govuk-fieldset__legend--l",
+        isPageHeading: true
+      }
+    }) %}
+
+      {{ govukInput({
+        classes: "govuk-input--width-10",
+        hint: {
+          text: "For example, N10 1AA"
+        },
+        id: "address-postcode",
+        name: "addressPostcode",
+        autocomplete: "postal-code",
+        value: data['addressPostcode']
+      }) }}
+
+    {% endcall %}
+      {{ govukButton({
+        text: "Find address"
+      }) }}
+
+    <p class="govuk-body">
+      <a href="/enter-address-manually" class="govuk-link">Enter address manually</a>
+    </p>
+  </div>
+</form>
+
+{% endblock %}

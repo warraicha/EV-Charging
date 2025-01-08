@@ -1,0 +1,48 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <form method="post" action="/adequate-onstreet-parking-answer">
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "adequate-onstreet-parking",
+        value: data['adequate-onstreet-parking'],
+        fieldset: {
+          legend: {
+            text: "Do you meet the 'Adequate on-street parking' criteria?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "There must be legal on-street parking generally available outside or near your home, that does not disrupt the safety or flow of vehicles and pedestrians."
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </div>
+  </form>
+
+{% endblock %}

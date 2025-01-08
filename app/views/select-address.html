@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/eligible" method="post">
+    <h1 class="govuk-heading-l">Select your address</h1>
+         {{ govukSelect({
+           id: "address",
+           name: "address",
+           label: {
+             text: "Select an address"
+           },
+           items: [
+             {
+               value: "",
+               text: "Select an address"
+             },
+             {
+               value: "1 Halliwick road, London, N10 1AA",
+               text: "1 Halliwick road, London, N10 1AA"
+             },
+             {
+               value: "3 Halliwick road, London, N10 1AA",
+               text: "3 Halliwick road, London, N10 1AA"
+             },
+             {
+               value: "5 Halliwick road, London, N10 1AA",
+               text: "5 Halliwick road, London, N10 1AA"
+             }
+           ]
+         }) }}
+         {{ govukButton({
+           text: "Continue"
+         }) }}
+    <p class="govuk-body">
+    <a href="/enter-address-manually" class="govuk-link">I can't find my address in the list</a>
+    </p>
+    </form>
+    </div>
+    </div>
+    {% endblock %}
