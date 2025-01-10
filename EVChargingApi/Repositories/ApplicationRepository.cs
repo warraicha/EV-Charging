@@ -27,6 +27,12 @@ public class ApplicationRepository : IApplicationRepository
         await _context.Applications.AddAsync(application);
     }
 
+    public async Task DeleteAsync(Application application)
+    {
+        _context.Applications.Remove(application);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<bool> SaveChangesAsync()
     {
         return await _context.SaveChangesAsync() > 0;

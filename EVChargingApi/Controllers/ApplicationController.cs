@@ -44,4 +44,15 @@ public class ApplicationsController : ControllerBase
         await _applicationService.SubmitApplicationAsync(application);
         return CreatedAtAction(nameof(GetApplication), new { id = application.Id }, application);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteApplication(Guid id)
+    {
+        var result = await _applicationService.DeleteApplicationAsync(id);
+        if (!result)
+        {
+            return NotFound(new { Message = $"Application with ID {id} not found." });
+        }
+        return NoContent();
+    }
 }

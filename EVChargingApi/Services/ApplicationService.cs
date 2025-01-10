@@ -27,4 +27,16 @@ public class ApplicationService : IApplicationService
         await _repository.AddApplicationAsync(application);
         await _repository.SaveChangesAsync();
     }
+
+    public async Task<bool> DeleteApplicationAsync(Guid id)
+{
+    var application = await _repository.GetApplicationByIdAsync(id);
+    if (application == null)
+    {
+        return false;  // Application not found
+    }
+    
+    await _repository.DeleteAsync(application);
+    return true;  // Successfully deleted
+}
 }
